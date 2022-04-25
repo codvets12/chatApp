@@ -34,7 +34,6 @@ class AuthProvider with ChangeNotifier {
           accessToken: googleAuthCredential.accessToken);
       final UserCredential _userCredentials =
           await FirebaseAuth.instance.signInWithCredential(credentials);
-      notifyListeners();
     }
   }
 

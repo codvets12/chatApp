@@ -20,13 +20,13 @@ class _RegisterTabState extends State<RegisterTab> {
     TextEditingController namecontroller = TextEditingController();
     final reg = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    final GlobalKey<FormState> formkey = GlobalKey();
+    final GlobalKey<FormState> _formkey = GlobalKey();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Form(
-            key: formkey,
+            key: _formkey,
             child: Column(
               children: [
                 TextFormField(
@@ -71,6 +71,7 @@ class _RegisterTabState extends State<RegisterTab> {
                   height: 5,
                 ),
                 TextFormField(
+                  obscureText: true,
                   controller: passwordController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -92,8 +93,8 @@ class _RegisterTabState extends State<RegisterTab> {
                 ),
                 Buttons(
                     onTap: () {
-                      if (formkey.currentState!.validate()) {
-                        formkey.currentState!.save();
+                      if (_formkey.currentState!.validate()) {
+                        _formkey.currentState!.save();
                         Provider.of<AuthProvider>(context, listen: false)
                             .register(context,
                                 name: namecontroller.text,

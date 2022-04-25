@@ -225,6 +225,21 @@ class _LoginTabState extends State<LoginTab> {
                       print("finger print");
                     },
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Buttons(
+                    textcolor: const Color(0xFF575757),
+                    iconColor: Colors.white,
+                    color: const Color(0xFF223D94),
+                    ischecked: false,
+                    icon: Icons.phone,
+                    bgcolor: Colors.white,
+                    label: "Login Using Phone number",
+                    onTap: () {
+                      print("finger print");
+                    },
+                  ),
                 )
               ],
             ),

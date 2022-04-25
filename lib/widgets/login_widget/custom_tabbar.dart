@@ -18,13 +18,6 @@ class _StackOverState extends State<CustomTabBar>
     with SingleTickerProviderStateMixin {
   bool? iswhere;
   TabController? _tabController;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController namecontroller = TextEditingController();
-  final reg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  final GlobalKey<FormState> _formkey = GlobalKey();
-  final GlobalKey<FormState> formkey = GlobalKey();
 
   @override
   void initState() {
