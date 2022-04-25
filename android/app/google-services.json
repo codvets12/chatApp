@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "800646638481",
+    "project_id": "chatapp-a9641",
+    "storage_bucket": "chatapp-a9641.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800646638481:android:48119de6760eb979258830",
+        "android_client_info": {
+          "package_name": "com.codvet.ChatApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800646638481-8kdsnl7n714m4bvh0vagl4rfri33cbpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codvet.ChatApp",
+            "certificate_hash": "4eeed90628c7b9b6fc475ee8b059bb1565807d91"
+          }
+        },
+        {
+          "client_id": "800646638481-81fqitbcrdcpk07okm29k18r0kf5tbj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByX9WIS2LEFauqF8CQmTVhSf-LzsrUpTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800646638481-81fqitbcrdcpk07okm29k18r0kf5tbj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
