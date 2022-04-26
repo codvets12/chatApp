@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  Provider.debugCheckInvalidValueType = null;
-  WidgetsFlutterBinding();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Provider.debugCheckInvalidValueType = null;
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => AuthProvider()),
   ], child: const MyApp()));

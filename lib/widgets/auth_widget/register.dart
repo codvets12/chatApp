@@ -13,14 +13,14 @@ class RegisterTab extends StatefulWidget {
 }
 
 class _RegisterTabState extends State<RegisterTab> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
+  final reg = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  final GlobalKey<FormState> _formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController namecontroller = TextEditingController();
-    final reg = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    final GlobalKey<FormState> _formkey = GlobalKey();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
