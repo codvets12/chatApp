@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_check/model/user_model.dart';
 import 'package:first_check/network/network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -34,19 +35,25 @@ class AuthProvider with ChangeNotifier {
           accessToken: googleAuthCredential.accessToken);
       final UserCredential _userCredentials =
           await FirebaseAuth.instance.signInWithCredential(credentials);
+      Navigator.pushNamedAndRemoveUntil(
+          context, Routes.postFeed1, (route) => false);
     }
   }
 
-  Future<void> register(BuildContext context,
+  void register(BuildContext context,
       {required String name,
       required String email,
       required String password}) async {
-    firebaseAuth.Register(email: email, password: password, name: name);
+    await firebaseAuth.Register(
+      model: UserModel(name: name, email: email),
+      password: password,
+    );
+
     Navigator.pushNamedAndRemoveUntil(
         context, Routes.postFeed1, (route) => false);
   }
 
-  Future<void> Login(BuildContext context,
+  void Login(BuildContext context,
       {required String email, required String password}) async {
     firebaseAuth.Login(password: password, email: email);
     Navigator.pushNamedAndRemoveUntil(
