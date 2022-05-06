@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_check/model/user_model.dart';
@@ -19,8 +21,8 @@ class Network {
       model.uid = creds.user!.uid;
       firestore.collection("users").doc(creds.user!.uid).set(model.tojson());
       return model;
-    } on FirebaseAuthException catch (error, stk) {
-      throw FirebaseException(plugin: "firebase", message: "error:$error");
+    } catch (e) {
+      throw Exception("error on network");
     }
   }
 
@@ -28,12 +30,8 @@ class Network {
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "week password") {
-        print("password is to weak");
-      } else if (e.code == "email already exist") {
-        print("email already exist");
-      }
+    } on FirebaseAuthException catch (error) {
+      print(error.message);
     }
   }
 }

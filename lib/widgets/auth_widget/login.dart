@@ -1,3 +1,4 @@
+import 'package:first_check/common/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -109,7 +110,8 @@ class _LoginTabState extends State<LoginTab> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
-                    //  controller: passwordController,
+                    obscureText: true,
+                    controller: passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -137,7 +139,7 @@ class _LoginTabState extends State<LoginTab> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
-                    //  controller: emailController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -148,7 +150,7 @@ class _LoginTabState extends State<LoginTab> {
                       ),
                     ),
                     validator: (val) {
-                      if (reg.hasMatch(val!)) {
+                      if (!reg.hasMatch(val!)) {
                         "Email is incorrect";
                       }
                       return null;
@@ -164,6 +166,7 @@ class _LoginTabState extends State<LoginTab> {
                     children: [
                       Buttons(
                           onTap: () {
+                            DialogBox();
                             if (_formkey.currentState!.validate()) {
                               Provider.of<AuthProvider>(context, listen: false)
                                   .Login(context,

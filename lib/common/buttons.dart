@@ -26,7 +26,7 @@ class Buttons extends StatelessWidget {
   Color? color;
   Color? textcolor;
   Color? iconColor;
-  final void Function() onTap;
+  Function()? onTap;
   // double size;
   BorderRadius? borderRadius;
 
@@ -84,7 +84,7 @@ class Buttons extends StatelessWidget {
                         primary: bgcolor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
-                    onPressed: () {},
+                    onPressed: onTap,
                     child: Center(
                       child: Text(
                         label,

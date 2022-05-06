@@ -1,6 +1,8 @@
+import 'package:first_check/provider/auth_provider/auth_provider.dart';
 import 'package:first_check/screens/post_feed.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/post_feed1_widgets/app_bar.dart';
 import '../widgets/post_feed1_widgets/list_view_widget.dart';
@@ -81,14 +83,28 @@ class PostFeed1 extends StatelessWidget {
                   isAlignment: true,
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PostFeedScreen()));
-                  },
-                  child: Text("button"))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PostFeedScreen()));
+                      },
+                      child: Text("button")),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .Signout(context);
+                      },
+                      child: Text("Sign out")),
+                ],
+              )
             ],
           ),
           scrollDirection: Axis.vertical,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_check/model/user_model.dart';
 import 'package:first_check/network/network.dart';
@@ -40,17 +42,20 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  void register(BuildContext context,
-      {required String name,
-      required String email,
-      required String password}) async {
-    await firebaseAuth.Register(
-      model: UserModel(name: name, email: email),
-      password: password,
-    );
+  void Register(BuildContext context,
+      {required String name, required String email, required String password}) {
+    try {
+      firebaseAuth.Register(
+        model: UserModel(name: name, email: email),
+        password: password,
+      );
 
-    Navigator.pushNamedAndRemoveUntil(
-        context, Routes.postFeed1, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(
+          context, Routes.postFeed1, (route) => false);
+    } on FirebaseAuthException catch (error) {
+      print(error.message);
+      notifyListeners();
+    }
   }
 
   void Login(BuildContext context,
@@ -58,5 +63,10 @@ class AuthProvider with ChangeNotifier {
     firebaseAuth.Login(password: password, email: email);
     Navigator.pushNamedAndRemoveUntil(
         context, Routes.postFeed1, (route) => false);
+  }
+
+  void Signout(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.authentications, (route) => false);
   }
 }
