@@ -1,3 +1,4 @@
+import 'package:first_check/common/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,12 @@ class RegisterTab extends StatefulWidget {
 }
 
 class _RegisterTabState extends State<RegisterTab> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController namecontroller = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final namecontroller = TextEditingController();
   final reg = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  final GlobalKey<FormState> _formkey = GlobalKey();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,9 @@ class _RegisterTabState extends State<RegisterTab> {
                       hintText: "Name"),
                   validator: (val) {
                     if (val!.isEmpty) {
-                      "Name cannot be empty";
+                      return null;
+                    } else {
+                      "Name is incorrect";
                     }
                   },
                 ),
@@ -61,10 +64,12 @@ class _RegisterTabState extends State<RegisterTab> {
                       ),
                       hintText: "email"),
                   validator: (val) {
-                    if (reg.hasMatch(val!)) {
-                      "Invalid email";
+                    if (!reg.hasMatch(val!)) {
+                      return null;
+                    } else {
+                      "email";
                     }
-                    ;
+                    // return null;
                   },
                 ),
                 SizedBox(
@@ -84,8 +89,11 @@ class _RegisterTabState extends State<RegisterTab> {
                       hintText: "password"),
                   validator: (val) {
                     if (val!.length < 6) {
-                      "password in tooshort";
+                      return null;
+                    } else {
+                      "password is incorrect";
                     }
+                    //return null;
                   },
                 ),
                 SizedBox(
@@ -93,13 +101,17 @@ class _RegisterTabState extends State<RegisterTab> {
                 ),
                 Buttons(
                     onTap: () {
-                      if (_formkey.currentState!.validate()) {
-                        _formkey.currentState!.save();
-                        Provider.of<AuthProvider>(context, listen: false)
-                            .register(context,
-                                name: namecontroller.text,
-                                email: emailController.text,
-                                password: passwordController.text);
+                      try {
+                        if (_formkey.currentState!.validate()) {
+                          showAlertDialog(context);
+                          Provider.of<AuthProvider>(context, listen: false)
+                              .Register(context,
+                                  name: namecontroller.text,
+                                  email: emailController.text,
+                                  password: passwordController.text);
+                        }
+                      } catch (err) {
+                        print(err.runtimeType);
                       }
                     },
                     bgcolor: const Color(0xFFFEE9D4),
@@ -112,4 +124,22 @@ class _RegisterTabState extends State<RegisterTab> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  AlertDialog alert = AlertDialog(
+    content: new Row(
+      children: [
+        CircularProgressIndicator(),
+        Container(margin: EdgeInsets.only(left: 5), child: Text("Loading")),
+      ],
+    ),
+  );
+  showDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
