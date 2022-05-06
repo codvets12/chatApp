@@ -14,9 +14,9 @@ class RegisterTab extends StatefulWidget {
 }
 
 class _RegisterTabState extends State<RegisterTab> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final namecontroller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
   final reg = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
